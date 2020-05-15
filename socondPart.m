@@ -1,7 +1,5 @@
 clc;
 close all ; clear all;
-
-
 %read and show the original image
 a=imread('peppers.jpg');
 figure(1),imshow(a);title('original image');
@@ -12,8 +10,6 @@ F=fft2(b);
 Fsh=fftshift(F);
 S=log(1+abs(Fsh));
 figure(3); imshow(S,[]); title('Magnitude of FT of the original image');
-
-
 %freqyency responce of the filter
 a=0.9;
 f=zeros(41,41);
@@ -32,29 +28,14 @@ filfft = fft2(pad);
 filftsh = fftshift(filfft);
 magnetud = log(abs(filftsh));
 figure(4); imshow(magnetud,[]);title('Magnitude of the Frequency Response of the filter.');
-%filterr=ones(41,41)/9;
-%F1=fft2(filterr);
-%Fsh1=fftshift(F1);
-%S1=log(1+abs(Fsh1));
-%figure(3); imshow(S1,[]); title('freqyency responce of the filter');
-
-
-
 %filter the image and show in freqyency domain
 photo = F.*filftsh;
 d=fftshift(photo);
 fil=log(1+abs(d));
 figure(5),imshow(abs(fil),[]);title(' Magnitude after processing.');
-%y=filter2(filter_ftsh,Fsh);
-%S=log(1+abs(y));
-%figure(4); imshow(S,[]); title('Magnitude of FT of the filtered image');
-
-
 %filtered image
 x=ifft2(d)
 %figure(5); imshow(x,[]); title('filtered image');
-
-%filtered image
 a=filter2(f,b);
-final=log(100 + abs(a));
+final=log(abs(a));
 figure(6); imshow(final,[]); title('Resulting image.');
